@@ -1,0 +1,13 @@
+name: Board-Game-Project
+title: Board-Game-Project
+username:
+account: jeremyd
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 570399
+bundleId: 1700327
+url: https://jeremyd.shinyapps.io/Board-Game-Project/
+when: 1542197955.77114
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Board game scraper.py|boardgames.R|README.md|www/banner.png|www/title.png

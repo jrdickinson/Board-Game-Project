@@ -7,7 +7,6 @@ library(tm)
 library(wordcloud)
 library(twitteR)
 library(dplyr)
-setwd("C:/Users/jerem.DESKTOP-GGM6Q2I/Source_Tree/R fall project")
 boardgames <- read_csv("board_games_cleaned.csv")
 sidebarPanel2 <- function (..., out = NULL, width = 4) 
 {
@@ -16,7 +15,6 @@ sidebarPanel2 <- function (..., out = NULL, width = 4)
       out
   )
 }
-setwd("C:/Users/jerem.DESKTOP-GGM6Q2I/Source_Tree/R fall project/Board-Game-Project")
 
 
 ui <- fluidPage(
@@ -113,9 +111,9 @@ ui <- fluidPage(
       h2("Author: Jeremy Dickinson"),
       h2("Type: Shiny App"),
       h2("Description:"),
-      h3("     Welcome to my Shiny App!  This app displays different types of insights into board game data collected from BoardGameGeek.  The data included here is only for games which are ranked as of November 7th.  Not all of the ranks are perfect since not all the data was pulled at the same time, but ranks are assumed to be close since the data was collected in the span of one day."),
+      h3("     Hi!  Welcome to my Shiny App!  This app displays different types of insights into board game data collected from BoardGameGeek.  The data included here is only for games which are ranked as of November 7th.  Not all of the ranks are perfect since not all the data was pulled at the same time, but ranks are assumed to be close since the data was collected in the span of one day."),
       h3("     On the 'Time Series and WordCloud' tab, users can shift the points of the slider to adjust the range of years for the graph.  Users can also input the name of a boardgame to see what words appear and are the most common within that boardgames description.  Clicking the update button causes these changes to the graphs to take effect; the graphs will not update unless it is clicked."),
-      h3("     On the 'Various Insights' tab, users can use the dropdown menus located on the left side of the screen to select between four different choices for the graph axis.  These selections will automatically update the graph.  Below the choice panels, insights will appear for each possible graph.  Experiment with the different combinations to find different insights."),
+      h3("     The 'Various Insights' tab allows for the comparison of various features.  Users can use the dropdown menus located on the left side of the screen to select between four different choices for the graph axis.  These selections will automatically update the graph.  Below the choice panels, insights will appear for each possible graph.  Experiment with the different combinations to find different insights."),
       h3("     On the 'Board Game Explorer' tab, users can see some of the different features of the dataset and have many different types of filters available to them.  The majority of the boardgamegeek advanced search features have been included plus some extras like number of users owned and the ability to search game descriptions by keywords.  The data set updates automatically when the value of a filter changes.  Experiment with the different filters and see what you can find!"),
       h2("References:"),
       h3("(2018, November 7th) Boardgamegeek.  Data Retrieved from www.boardgamegeek.com"),
@@ -213,7 +211,7 @@ server <- function(input, output)
       output$text_03 <- renderUI({
         HTML(
           paste0(
-            h2("Insight:"), h4("The board games with the highest owned numbers are games which are well known for being good games for both gamers and non-gamers like Catan, Pandemic, and Carcassonne.  Games seem to form a curve with a medium complexity in the center.")
+            h2("Insight:"), h4("The board games with the highest owned numbers are games which are well known for being good games for both gamers and non-gamers like Catan, Pandemic, and Carcassonne.  Games seem to form a curve with a medium complexity in the center.  Higher ownership rates dwindles as complexity increases.")
           )
         )
       })
@@ -229,7 +227,7 @@ server <- function(input, output)
       output$text_03 <- renderUI({
         HTML(
           paste0(
-            h2("Insight:"), h4("Munchkin is the stand-out data point in this graph with a high number of users trading.  It's average is a little on the low side and it has a fairly high numbers of users that own it.")
+            h2("Insight:"), h4("Munchkin is the stand-out data point in this graph with a high number of users trading.  It's average is a little on the low side and it has a fairly high numbers of users that own it.  Higher complexity games have lower proportions of games available for trade.")
           )
         )
       })
@@ -245,7 +243,7 @@ server <- function(input, output)
       output$text_03 <- renderUI({
         HTML(
           paste0(
-            h2("Insight:"), h4("Most of the games that are more commonly owned have an average rating between 6 and 8.5.  Gloomhaven and Pandemic Legacy Season 1 are both games that are above the curve with fairly high ownership and high average ratings.  Games like Munchkin, Risk, Uno, and The Game of Life fall below the curve.")
+            h2("Insight:"), h4("Most of the games that are more commonly owned have an average rating between 6 and 8.5.  Gloomhaven and Pandemic Legacy Season 1 are both games that are above the curve with fairly high ownership and high average ratings.  Games like Munchkin, Risk, Uno, Monopoly, and The Game of Life fall below the curve.")
           )
         )
       })
@@ -261,7 +259,7 @@ server <- function(input, output)
       output$text_03 <- renderUI({
         HTML(
           paste0(
-            h2("Insight:"), h4("Most games have an average rating between 4 and 8 with the center being around 7.  Some of the top games like Gloomhaven and Pandemic Legacy Season 1 are highly rated and have few games available for trading despite their number of copies owned.")
+            h2("Insight:"), h4("Board games with higher for-trade counts have an avearge rating of 6-8 with the center being around 7.  Some of the top games like Gloomhaven and Pandemic Legacy Season 1 are highly rated and have few games available for trading despite their number of copies owned.")
           )
         )
       })
@@ -277,7 +275,7 @@ server <- function(input, output)
       output$text_03 <- renderUI({
         HTML(
           paste0(
-            h2("Insight:"), h4("This graph is a fairly straight line up the middle showing that more copies of a game are available for trade as more copies of that game are owned.  Some noteable games above the curve are Pandemic Legacy Season 1 and Azul while the Game of Thrones Card Game and Diplomacy are on the lower end.")
+            h2("Insight:"), h4("This graph is a fairly straight line up the middle showing that more copies of a game are available for trade as more copies of that game are owned.  Some noteable games above the curve are Pandemic Legacy Season 1 and Azul while the Game of Thrones Card Game and Diplomacy are on the lower end.  Munchkin has a high trade in count for its users owned compared to pandemic.  Outside the Scope of BGG, which is a catch all for non-board games like bocce, cornhole, disc golf, and jarts, also has a very high trade in value for its users owned count.")
           )
         )
       })
@@ -510,7 +508,7 @@ server <- function(input, output)
   })
   output$table_04 <- renderDataTable({
     mylist <- Reduce(intersect, list(filter1(), filter2(), filter3(), filter4(), filter5(), filter6(), filter7(), filter8(), filter9(), filter10(), filter11(), filter12(), filter13(), filter14(), filter15(), filter16(), filter17(), filter18(), filter19(), filter20(), filter21(), filter22(), filter23(), filter24(), filter25(), filter26(), filter27()))
-    boardgames4 <- select(arrange(boardgames[boardgames$id %in% mylist,], overall_rank), name, id, year, overall_rank, rating_average, min_age,max_players, min_playing_time, complexity_weight)
+    boardgames4 <- select(arrange(boardgames[boardgames$id %in% mylist,], overall_rank), name, id, year, overall_rank, rating_average, min_age,max_players, min_playing_time, complexity_weight, thematic_rank, strategy_rank, war_rank, family_rank, abstract_rank, party_rank, customizable_rank, childrens_rank)
     boardgames4
   })
   output$html_link <- renderUI({
